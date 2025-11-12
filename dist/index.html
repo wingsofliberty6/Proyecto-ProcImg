@@ -12,7 +12,7 @@
 </head>
 <body>
   <header>
-    <image id="logo" src="public/logo.png"></image>
+    <image id="logo" src="/Proyecto-ProcImg/assets/logo-CI3fwVP-.png"></image>
     <h1> World Cup Reality 26'</h1>
   </header>
   <main>
@@ -20,13 +20,13 @@
       
       <!-- Assets -->
       <a-assets>
-        <video id="video-alm" src="/video-alm.mp4" controls preload="auto" loop="true" crossorigin="anonymous"></video>
-        <video id="video-arg" src="/video-arg.mp4" controls preload="auto" loop="true" crossorigin="anonymous"></video>
+        <video id="video-alm" src="src/video-alm.mp4" controls preload="auto" loop="true" crossorigin="anonymous"></video>
+        <video id="video-arg" src="src/video-arg.mp4" controls preload="auto" loop="true" crossorigin="anonymous"></video>
         
-        <a-asset-item id="model-glb" src="/model.glb"></a-asset-item>
+        <a-asset-item id="model-glb" src="src/model.glb"></a-asset-item>
         
-        <img id="img-alm" src="/img-alm.jpg">
-        <img id="img-arg" src="/img-arg.jpg">
+        <img id="img-alm" src="src/img-alm.jpg">
+        <img id="img-arg" src="src/img-arg.jpg">
 
         <a-box id="test-hiro-box" color="magenta" depth="0.5" height="0.5" width="0.5" visible="false"></a-box>
       </a-assets>
@@ -36,7 +36,7 @@
         🎨 Filtros
       </button>
 
-      <p> Versión 121125-402-23</p>
+      <p> Versión 121125-402-28</p>
 
       <a-marker preset='hiro' id="Hiro-Test-Marker">
         <a-entity 
@@ -48,7 +48,7 @@
       </a-marker>
 
       <!-- Set Alemania -->
-      <a-nft type='nft' url='nft/NFT-Alemania' smooth="true" smoothCount="10" smoothTolerance=".01" id="Alm-Marker"> 
+      <a-nft type='nft' url='src/public/nft/NFT-Alemania' smooth="true" smoothCount="10" smoothTolerance=".01" id="Alm-Marker"> 
         <a-entity 
           gltf-model="#model-glb" 
           scale="0.2 0.2 0.2"
@@ -181,7 +181,7 @@
       </a-nft>
 
       <!-- Set Argentina -->
-      <a-nft type='nft' url='nft/NFT-Argentina' smooth="true" smoothCount="10" smoothTolerance=".01" id="Arg-Marker"> 
+      <a-nft type='nft' url='src/public/nft/NFT-Argentina' smooth="true" smoothCount="10" smoothTolerance=".01" id="Arg-Marker"> 
         <a-entity 
           
           gltf-model="#model-glb" 
