@@ -17,7 +17,11 @@
     <h1> World Cup Reality 26'</h1>
   </header>
   <main>
-    <a-scene embedded arjs='sourceType: webcam; trackingMethod: best; debugUIEnabled: false;'>
+    <a-scene embedded arjs='sourceType: webcam; 
+    trackingMethod: best; 
+    debugUIEnabled: false; 
+    patternRatio: 0.8; 
+    detectionMode: mono;'>
       
       <!-- Assets -->
       <a-assets>
@@ -49,14 +53,11 @@
       </a-marker>
 
       <!-- Set Alemania -->
-      <a-nft type='nft' url='./nft/NFT-Alemania' id="Alm-Marker"> 
+      <a-nft type='nft' 
+      url='./nft/NFT-Alemania' 
+      smooth="true"
+      id="Alm-Marker"> 
         <a-entity 
-          gltf-model="#model-glb" 
-          scale="0.2 0.2 0.2"
-          position="0 0.1 0" 
-          visible="false"
-          id="hiro-model"> </a-entity>
-        <!-- <a-entity 
           
           gltf-model="#model-glb" 
           position='1.8 0.05 1.6' 
@@ -178,7 +179,7 @@
             easing: easeOutQuad;            
             startEvents: showContent;
           ">
-        </a-image> -->
+        </a-image>
       </a-nft>
 
       <!-- Set Argentina -->
