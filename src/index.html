@@ -28,12 +28,23 @@
         
         <img id="img-alm" src="public/img-alm.jpg">
         <img id="img-arg" src="public/img-arg.jpg">
+
+        <a-box id="test-hiro-box" color="magenta" depth="0.5" height="0.5" width="0.5" visible="false"></a-box>
       </a-assets>
       <div id="filter-overlay" class="no-filter"></div>
       <button id="filter-btn">
           
         🎨 Filtros
       </button>
+
+      <a-marker preset='hiro' id="Hiro-Test-Marker">
+        <a-entity 
+          gltf-model="#model-glb" 
+          scale="0.2 0.2 0.2"
+          position="0 0.1 0" 
+          visible="false"
+          id="hiro-model"> </a-entity>
+      </a-marker>
 
       <!-- Set Alemania -->
       <a-nft type='nft' url='public/nft/NFT-Alemania' smooth="true" smoothCount="10" smoothTolerance=".01" id="Alm-Marker"> 
