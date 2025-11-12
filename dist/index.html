@@ -2,17 +2,17 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>WebAR Mundial 2026</title>
+  <title>WebAR Mundial 2026</title>
+  <link rel="stylesheet" href="public/estilos.css">
   <!-- Javascripts-->
   <!-- A-Frame + AR.js -->
   <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
   <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
-  <script type="module" crossorigin src="/assets/index-9HMaaPH5.js"></script>
-  <link rel="stylesheet" crossorigin href="/assets/index-CiWMZVkw.css">
+  <script type="module" crossorigin src="/Proyecto-ProcImg/assets/index-Boy1le7m.js"></script>
 </head>
 <body>
   <header>
-    <image id="logo" src="/assets/logo-CI3fwVP-.png"></image>
+    <image id="logo" src="public/logo.png"></image>
     <h1> World Cup Reality 26'</h1>
   </header>
   <main>
@@ -36,6 +36,8 @@
         🎨 Filtros
       </button>
 
+      <p> Versión 12/11/25-402-23</p>
+
       <a-marker preset='hiro' id="Hiro-Test-Marker">
         <a-entity 
           gltf-model="#model-glb" 
@@ -48,6 +50,12 @@
       <!-- Set Alemania -->
       <a-nft type='nft' url='nft/NFT-Alemania' smooth="true" smoothCount="10" smoothTolerance=".01" id="Alm-Marker"> 
         <a-entity 
+          gltf-model="#model-glb" 
+          scale="0.2 0.2 0.2"
+          position="0 0.1 0" 
+          visible="false"
+          id="hiro-model"> </a-entity>
+        <!-- <a-entity 
           
           gltf-model="#model-glb" 
           position='1.8 0.05 1.6' 
@@ -169,7 +177,7 @@
             easing: easeOutQuad;            
             startEvents: showContent;
           ">
-        </a-image>
+        </a-image> -->
       </a-nft>
 
       <!-- Set Argentina -->
