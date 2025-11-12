@@ -1,5 +1,5 @@
 # Archivos de la build de Vite
-/dist
+src/dist
 
 # Dependencias y caché
 /node_modules
