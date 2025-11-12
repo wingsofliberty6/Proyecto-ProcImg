@@ -1,0 +1,7 @@
+# Archivos de la build de Vite
+/dist
+
+# Dependencias y caché
+/node_modules
+.env
+.DS_Store
