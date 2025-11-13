@@ -2,17 +2,17 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>WebAR Mundial 2026</title>
-  <link rel="stylesheet" href="./public/estilos.css">
+  <title>WebAR Mundial 2026</title>
   <!-- Javascripts-->
   <!-- A-Frame + AR.js -->
   <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
   <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
-  <script type="module" crossorigin src="/Proyecto-ProcImg/assets/index-VNfAPTwM.js"></script>
+  <script type="module" crossorigin src="/Proyecto-ProcImg/assets/index-DBQKmBB7.js"></script>
+  <link rel="stylesheet" crossorigin href="/Proyecto-ProcImg/assets/index-BQw7gZBH.css">
 </head>
 <body>
   <header>
-    <img id="logo" src="./public/logo.png"></img>
+    <img id="logo" src="./logo.png"></img>
     <h1> World Cup Reality 26'</h1>
   </header>
   <main>
@@ -25,13 +25,13 @@
       
       <!-- Assets -->
       <a-assets>
-        <video id="video-alm" src="./public/video-alm.mp4" controls preload="auto" loop="true" crossorigin="anonymous"></video>
-        <video id="video-arg" src="./public/video-arg.mp4" controls preload="auto" loop="true" crossorigin="anonymous"></video>
+        <video id="video-alm" src="/Proyecto-ProcImg/video-alm.mp4" controls preload="auto" loop="true" crossorigin="anonymous"></video>
+        <video id="video-arg" src="/Proyecto-ProcImg/video-arg.mp4" controls preload="auto" loop="true" crossorigin="anonymous"></video>
         
-        <a-asset-item id="model-glb" src="./public/model.glb"></a-asset-item>
+        <a-asset-item id="model-glb" src="/model.glb"></a-asset-item>
         
-        <img id="img-alm" src="./public/img-alm.jpg">
-        <img id="img-arg" src="./public/img-arg.jpg">
+        <img id="img-alm" src="/Proyecto-ProcImg/img-alm.jpg">
+        <img id="img-arg" src="/Proyecto-ProcImg/img-arg.jpg">
       </a-assets>
       <div id="filter-overlay" class="no-filter"></div>
       <button id="filter-btn">
@@ -41,7 +41,7 @@
 
       <!-- Set Alemania -->
       <a-nft type='nft' 
-      url='./public/nft/NFT-Alemania' 
+      url='/nft/NFT-Alemania' 
       smooth="true"
       id="Alm-Marker"> 
         <a-entity 
@@ -167,7 +167,7 @@
       </a-nft>
 
       <!-- Set Argentina -->
-      <a-nft type='nft' url='./public/nft/NFT-Argentina' id="Arg-Marker"> 
+      <a-nft type='nft' url='/nft/NFT-Argentina' id="Arg-Marker"> 
         <a-entity 
           
           gltf-model="#model-glb" 
