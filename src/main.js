@@ -59,22 +59,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const filterBtn = document.getElementById('filter-btn');
   const filterOverlay = document.getElementById('filter-overlay');
-  
-  const hiroMarker = document.getElementById('Hiro-Test-Marker'); 
-  const hiroModel = document.getElementById('hiro-model');
-
-  //HIRO
-  if (hiroMarker && hiroModel) {
-    hiroMarker.addEventListener('markerFound', () => {
-      console.log('✅ Marcador HIRO de PRUEBA detectado. Sistema AR funcional.');
-      hiroModel.setAttribute('visible', true);
-    });
-
-    hiroMarker.addEventListener('markerLost', () => {
-      console.log('❌ Marcador HIRO de PRUEBA perdido.');
-      hiroModel.setAttribute('visible', false);
-    });
-  }
 
   // LÓGICA DE FILTROS
   const filterClasses = [

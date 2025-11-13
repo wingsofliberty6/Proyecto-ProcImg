@@ -19,7 +19,10 @@
   <main>
     <a-scene embedded arjs='sourceType: webcam; 
     trackingMethod: best; 
-    debugUIEnabled: false;'>
+    debugUIEnabled: false;
+    patternRatio: 0.8;
+    detectionMode: mono;
+    '>
       
       <!-- Assets -->
       <a-assets>
@@ -38,73 +41,6 @@
           
         🎨 Filtros
       </button>
-      <p> Versión 121125-402-29</p>
-      <a-marker preset='hiro' id="Hiro-Test-Marker">
-        <a-entity 
-          
-          gltf-model="#model-glb" 
-          position='1.8 0.05 1.6' 
-          rotation='0 0 0' 
-          scale='1.2 1.2 1.2'
-          visible="false"
-          
-          animation="
-            property: rotation;          
-            to: 0 0 360;                 
-            loop: true;                  
-            dur: 10000;                  
-            easing: linear;              
-          "
-
-          animation__scale="
-            property: scale;
-            from: 0 0 0;
-            to: 1.2 1.2 1.2;
-            dur: 700;
-            easing: easeOutQuad;
-            startEvents: showContent;
-            dir: alternate;
-          "
-
-          animation__position="
-            property: position;
-            from: 0 0 0;
-            to: 1.8 0.05 1.6;
-            dur: 700;                       
-            easing: easeOutQuad;            
-            startEvents: showContent;
-          ">
-        </a-entity>
-        <a-plane 
-          
-          position='-1.8 -0.1 1.6' 
-          rotation='-90 0 0' 
-          width='1.6' 
-          height='0.9' 
-          color="#2e7d32"
-          visible="false"
-        
-          animation__scale="
-            property: scale;
-            from: 0 0 0;
-            to: 1.2 1.2 1.2;
-            dur: 1000;
-            easing: easeOutQuad;
-            startEvents: showContent;
-            dir: alternate;
-          "
-
-          animation__position="
-            property: position;
-            from: 0 0 0;
-            to: -1.8 -0.1 1.6;
-            dur: 1000;                       
-            easing: easeOutQuad;            
-            startEvents: showContent;
-          ">
-          <a-text value="La aplicación funciona correctamente" align="center" width="3.5" position="0 0 0.005"></a-text>
-        </a-plane>
-      </a-marker>
 
       <!-- Set Alemania -->
       <a-nft type='nft' 
