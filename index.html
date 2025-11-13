@@ -21,16 +21,18 @@
         
       🎨 Filtros
     </button>
-    <a-scene embedded arjs='sourceType: webcam; 
-    trackingMethod: nft; 
-    debugUIEnabled: false;
-    '>
+    <a-scene
+      embedded
+      renderer="logarithmicDepthBuffer: true;"
+      vr-mode-ui="enabled: false;"
+      arjs="sourceType: webcam; debugUIEnabled: false; detectionMode: mono_and_matrix; patternRatio: 0.75;"
+    >
       <!-- Assets -->
       <a-assets>
         <video id="video-alm" src="/Proyecto-ProcImg/assets/video-alm-0bU2Zfyz.mp4" controls preload="auto" loop="true" crossorigin="anonymous"></video>
         <video id="video-arg" src="/Proyecto-ProcImg/assets/video-arg-BLRjS3ui.mp4" controls preload="auto" loop="true" crossorigin="anonymous"></video>
         
-        <a-asset-item id="model-glb" src="/Proyecto-ProcImg/public/model.glb" crossorigin="anonymous"></a-asset-item>
+        <a-asset-item id="model-glb" src="./public/model.glb" crossorigin="anonymous"></a-asset-item>
         
         <img id="img-alm" src="/Proyecto-ProcImg/assets/img-alm-BBCdJCU7.jpg">
         <img id="img-arg" src="/Proyecto-ProcImg/assets/img-arg-xxIXuTrD.jpg">
@@ -38,9 +40,11 @@
 
       <!-- Set Alemania -->
       <a-nft type='nft' 
-      url='nft/NFT-Alemania'
+      url='./nft/NFT-Alemania'
       smooth="true"
-      smoothCount="10" 
+      smoothCount="10"
+      smoothTolerance="0.01"
+      smoothThreshold="5" 
       id="Alm-Marker"> 
         <a-entity 
           
@@ -166,7 +170,7 @@
 
       <!-- Set Argentina -->
       <a-nft type='nft'
-      url='nft/NFT-Argentina' 
+      url='./nft/NFT-Argentina' 
       smooth="true"
       smoothCount="10" 
       id="Arg-Marker"> 
