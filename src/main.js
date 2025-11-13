@@ -57,7 +57,6 @@ document.addEventListener('DOMContentLoaded', () => {
     mexMarker]
   .filter(m => m);
 
-  const arVideoPlayer = document.getElementById('ar-video-player');
   const filterBtn = document.getElementById('filter-btn');
   const filterOverlay = document.getElementById('filter-overlay');
   
@@ -68,7 +67,6 @@ document.addEventListener('DOMContentLoaded', () => {
   if (hiroMarker && hiroModel) {
     hiroMarker.addEventListener('markerFound', () => {
       console.log('✅ Marcador HIRO de PRUEBA detectado. Sistema AR funcional.');
-      // Simplemente hacemos visible el modelo para la prueba
       hiroModel.setAttribute('visible', true);
     });
 

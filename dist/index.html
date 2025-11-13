@@ -7,8 +7,8 @@
   <!-- A-Frame + AR.js -->
   <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
   <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
-  <script type="module" crossorigin src="/Proyecto-ProcImg/assets/index-9HMaaPH5.js"></script>
-  <link rel="stylesheet" crossorigin href="/Proyecto-ProcImg/assets/index-CiWMZVkw.css">
+  <script type="module" crossorigin src="/Proyecto-ProcImg/assets/index-aqlLR7Ul.js"></script>
+  <link rel="stylesheet" crossorigin href="/Proyecto-ProcImg/assets/index-BQw7gZBH.css">
 </head>
 <body>
   <header>
@@ -18,8 +18,7 @@
   <main>
     <a-scene embedded arjs='sourceType: webcam; 
     trackingMethod: best; 
-    debugUIEnabled: false; 
-    '>
+    debugUIEnabled: false;'>
       
       <!-- Assets -->
       <a-assets>
@@ -38,16 +37,72 @@
           
         🎨 Filtros
       </button>
-
       <p> Versión 121125-402-29</p>
-
       <a-marker preset='hiro' id="Hiro-Test-Marker">
         <a-entity 
+          
           gltf-model="#model-glb" 
-          scale="1.2 1.2 1.2"
-          position="0 0.1 0" 
+          position='1.8 0.05 1.6' 
+          rotation='0 0 0' 
+          scale='1.2 1.2 1.2'
           visible="false"
-          id="hiro-model"> </a-entity>
+          
+          animation="
+            property: rotation;          
+            to: 0 0 360;                 
+            loop: true;                  
+            dur: 10000;                  
+            easing: linear;              
+          "
+
+          animation__scale="
+            property: scale;
+            from: 0 0 0;
+            to: 1.2 1.2 1.2;
+            dur: 700;
+            easing: easeOutQuad;
+            startEvents: showContent;
+            dir: alternate;
+          "
+
+          animation__position="
+            property: position;
+            from: 0 0 0;
+            to: 1.8 0.05 1.6;
+            dur: 700;                       
+            easing: easeOutQuad;            
+            startEvents: showContent;
+          ">
+        </a-entity>
+        <a-plane 
+          
+          position='-1.8 -0.1 1.6' 
+          rotation='-90 0 0' 
+          width='1.6' 
+          height='0.9' 
+          color="#2e7d32"
+          visible="false"
+        
+          animation__scale="
+            property: scale;
+            from: 0 0 0;
+            to: 1.2 1.2 1.2;
+            dur: 1000;
+            easing: easeOutQuad;
+            startEvents: showContent;
+            dir: alternate;
+          "
+
+          animation__position="
+            property: position;
+            from: 0 0 0;
+            to: -1.8 -0.1 1.6;
+            dur: 1000;                       
+            easing: easeOutQuad;            
+            startEvents: showContent;
+          ">
+          <a-text value="La aplicación funciona correctamente" align="center" width="3.5" position="0 0 0.005"></a-text>
+        </a-plane>
       </a-marker>
 
       <!-- Set Alemania -->
@@ -92,7 +147,6 @@
         </a-entity>
         <a-plane 
           
-          id="alm-text-plane" 
           position='-1.8 -0.1 1.6' 
           rotation='-90 0 0' 
           width='1.6' 
@@ -122,7 +176,6 @@
         </a-plane>
         <a-video 
           
-          id="alm-video-player"
           src="#video-alm" 
           width="2.0" 
           height="1.2" 
@@ -151,7 +204,6 @@
         </a-video>
         <a-image 
           
-          id="alm-image"
           src="#img-alm" 
           width="1.2" 
           height="2.0" 
@@ -218,8 +270,7 @@
           ">
         </a-entity>
         <a-plane 
-          
-          id="ar-text-plane" 
+           
           position='-1.8 -0.1 1.6' 
           rotation='-90 0 0' 
           width='1.6' 
@@ -249,7 +300,6 @@
         </a-plane>
         <a-video 
           
-          id="ar-video-player"
           src="#video-arg" 
           width="2.0" 
           height="1.2" 
@@ -278,7 +328,6 @@
         </a-video>
         <a-image 
           
-          id="ar-image"
           src="#img-arg" 
           width="1.2" 
           height="2.0" 
