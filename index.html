@@ -2,33 +2,36 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>WebAR Mundial 2026</title>
+  <title>WebAR Mundial 2026</title>
+  <link rel="stylesheet" href="./public/estilos.css">
   <!-- Javascripts-->
   <!-- A-Frame + AR.js -->
   <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
   <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
-  <script type="module" crossorigin src="/assets/index-9HMaaPH5.js"></script>
-  <link rel="stylesheet" crossorigin href="/assets/index-CiWMZVkw.css">
+  <script type="module" crossorigin src="/Proyecto-ProcImg/assets/index-VNfAPTwM.js"></script>
 </head>
 <body>
   <header>
-    <image id="logo" src="/assets/logo-CI3fwVP-.png"></image>
+    <img id="logo" src="./public/logo.png"></img>
     <h1> World Cup Reality 26'</h1>
   </header>
   <main>
-    <a-scene embedded arjs='sourceType: webcam; trackingMethod: best; debugUIEnabled: false;'>
+    <a-scene embedded arjs='sourceType: webcam; 
+    trackingMethod: best; 
+    debugUIEnabled: false;
+    patternRatio: 0.8;
+    detectionMode: mono;
+    '>
       
       <!-- Assets -->
       <a-assets>
-        <video id="video-alm" src="/video-alm.mp4" controls preload="auto" loop="true" crossorigin="anonymous"></video>
-        <video id="video-arg" src="/video-arg.mp4" controls preload="auto" loop="true" crossorigin="anonymous"></video>
+        <video id="video-alm" src="./public/video-alm.mp4" controls preload="auto" loop="true" crossorigin="anonymous"></video>
+        <video id="video-arg" src="./public/video-arg.mp4" controls preload="auto" loop="true" crossorigin="anonymous"></video>
         
-        <a-asset-item id="model-glb" src="/model.glb"></a-asset-item>
+        <a-asset-item id="model-glb" src="./public/model.glb"></a-asset-item>
         
-        <img id="img-alm" src="/img-alm.jpg">
-        <img id="img-arg" src="/img-arg.jpg">
-
-        <a-box id="test-hiro-box" color="magenta" depth="0.5" height="0.5" width="0.5" visible="false"></a-box>
+        <img id="img-alm" src="./public/img-alm.jpg">
+        <img id="img-arg" src="./public/img-arg.jpg">
       </a-assets>
       <div id="filter-overlay" class="no-filter"></div>
       <button id="filter-btn">
@@ -36,17 +39,11 @@
         🎨 Filtros
       </button>
 
-      <a-marker preset='hiro' id="Hiro-Test-Marker">
-        <a-entity 
-          gltf-model="#model-glb" 
-          scale="0.2 0.2 0.2"
-          position="0 0.1 0" 
-          visible="false"
-          id="hiro-model"> </a-entity>
-      </a-marker>
-
       <!-- Set Alemania -->
-      <a-nft type='nft' url='nft/NFT-Alemania' smooth="true" smoothCount="10" smoothTolerance=".01" id="Alm-Marker"> 
+      <a-nft type='nft' 
+      url='./public/nft/NFT-Alemania' 
+      smooth="true"
+      id="Alm-Marker"> 
         <a-entity 
           
           gltf-model="#model-glb" 
@@ -84,7 +81,6 @@
         </a-entity>
         <a-plane 
           
-          id="alm-text-plane" 
           position='-1.8 -0.1 1.6' 
           rotation='-90 0 0' 
           width='1.6' 
@@ -114,7 +110,6 @@
         </a-plane>
         <a-video 
           
-          id="alm-video-player"
           src="#video-alm" 
           width="2.0" 
           height="1.2" 
@@ -143,7 +138,6 @@
         </a-video>
         <a-image 
           
-          id="alm-image"
           src="#img-alm" 
           width="1.2" 
           height="2.0" 
@@ -173,7 +167,7 @@
       </a-nft>
 
       <!-- Set Argentina -->
-      <a-nft type='nft' url='nft/NFT-Argentina' smooth="true" smoothCount="10" smoothTolerance=".01" id="Arg-Marker"> 
+      <a-nft type='nft' url='./public/nft/NFT-Argentina' id="Arg-Marker"> 
         <a-entity 
           
           gltf-model="#model-glb" 
@@ -210,8 +204,7 @@
           ">
         </a-entity>
         <a-plane 
-          
-          id="ar-text-plane" 
+           
           position='-1.8 -0.1 1.6' 
           rotation='-90 0 0' 
           width='1.6' 
@@ -241,7 +234,6 @@
         </a-plane>
         <a-video 
           
-          id="ar-video-player"
           src="#video-arg" 
           width="2.0" 
           height="1.2" 
@@ -270,7 +262,6 @@
         </a-video>
         <a-image 
           
-          id="ar-image"
           src="#img-arg" 
           width="1.2" 
           height="2.0" 
