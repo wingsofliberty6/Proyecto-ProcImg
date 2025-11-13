@@ -39,6 +39,13 @@ function setARVisibility(marker, isVisible) {
       }
     }
   }
+
+  if (videoElement.paused) {
+    setTimeout(() => {
+      videoElement.play().catch(e => 
+        console.error(`Error al iniciar reproducción en ${marker.id}:`, e));
+    }, 100);
+  }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
