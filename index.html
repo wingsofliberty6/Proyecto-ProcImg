@@ -17,32 +17,29 @@
     <h1> World Cup Reality 26'</h1>
   </header>
   <main>
+    <div id="filter-overlay" class="no-filter"></div>
+    <button id="filter-btn">
+        
+      🎨 Filtros
+    </button>
     <a-scene embedded arjs='sourceType: webcam; 
-    trackingMethod: best; 
+    trackingMethod: nft; 
     debugUIEnabled: false;
-    patternRatio: 1.0;
-    detectionMode: color;
     '>
-      
       <!-- Assets -->
       <a-assets>
         <video id="video-alm" src="public/video-alm.mp4" controls preload="auto" loop="true" crossorigin="anonymous"></video>
         <video id="video-arg" src="public/video-arg.mp4" controls preload="auto" loop="true" crossorigin="anonymous"></video>
         
-        <a-asset-item id="model-glb" src="public/model.glb"></a-asset-item>></a-asset-item>
+        <a-asset-item id="model-glb" src="public/model.glb"></a-asset-item>
         
         <img id="img-alm" src="public/img-alm.jpg">
         <img id="img-arg" src="public/img-arg.jpg">
       </a-assets>
-      <div id="filter-overlay" class="no-filter"></div>
-      <button id="filter-btn">
-          
-        🎨 Filtros
-      </button>
 
       <!-- Set Alemania -->
       <a-nft type='nft' 
-      url='nft/NFT-Alemania'
+      url='/Proyecto-ProcImg/public/nft/NFT-Alemania'
       smooth="true"
       smoothCount="10" 
       id="Alm-Marker"> 
@@ -170,7 +167,7 @@
 
       <!-- Set Argentina -->
       <a-nft type='nft'
-      url='nft/NFT-Argentina' 
+      url='/Proyecto-ProcImg/public/nft/NFT-Argentina' 
       smooth="true"
       smoothCount="10" 
       id="Arg-Marker"> 
