@@ -2,7 +2,7 @@ import { defineConfig } from 'vite'
 
 export default defineConfig ({
   
-  base: '/Proyecto-ProcImg/src',
+  base: '/Proyecto-ProcImg/',
   plugins: [],
   /* root: './src',
   server: {
