@@ -1,114 +1,171 @@
-function setARVisibility(marker, isVisible) { 
-  // Usa el marcador pasado como argumento para seleccionar SOLO su contenido
-  const elements = marker.querySelectorAll('a-entity, a-plane, a-video, a-image'); 
-  elements.forEach(el => {
-    if (isVisible) {
+// ================================================
+// UNIVERSAL NFT AR CONTROLLER
+// ================================================
 
-      el.setAttribute('visible', true);
-      el.emit('showContent'); 
-    } else {
+// Encuentra todos los marcadores NFT existentes
+const markers = document.querySelectorAll("a-nft");
 
-      el.emit('showContent', null, false); 
-      // Dispara la animación en reversa
-      setTimeout(() => {
-          if (!marker.isMarkerVisible) {
-              el.setAttribute('visible', false); 
-          }
-      }, 700);
-    }
-  });
+// Inicializa listeners para cada marcador
+markers.forEach(marker => {
+    
+    marker.addEventListener("markerFound", () => {
+        console.log(`📌 Marcador detectado: ${marker.id}`);
+        setVisibility(marker, true);
+    });
 
-  const videoPlayer = marker.querySelector('a-video');
-  if (videoPlayer) {
+    marker.addEventListener("markerLost", () => {
+        console.log(`❌ Marcador perdido: ${marker.id}`);
+        setVisibility(marker, false);
+    });
+});
 
-    const videoElement = videoPlayer.getObject3D('mesh').material.map.image; 
-    if (videoElement) {
-      if (isVisible) {
-        if (videoElement.paused) {
 
-          videoElement.play().catch(e => 
-          console.error(`Error al iniciar reproducción en
-          ${marker.id}:`, e));
+// ================================================
+// FUNCIÓN UNIVERSAL PARA MOSTRAR/OCULTAR ELEMENTOS
+// ================================================
+
+function setVisibility(marker, isVisible) {
+
+    // Obtiene *todos* los elementos del marcador
+    const children = marker.querySelectorAll("*");
+
+    children.forEach(child => {
+        // Activa/desactiva visibilidad
+        child.setAttribute("visible", isVisible);
+
+        // --- Control de VIDEO ---
+        if (child.tagName === "A-VIDEO") {
+            const mesh = child.getObject3D("mesh");
+
+            if (mesh && mesh.material && mesh.material.map) {
+                const videoEl = mesh.material.map.image;
+
+                if (videoEl) {
+                    if (isVisible) {
+                        videoEl.play().catch(err => {
+                            console.warn("⚠ No se pudo reproducir el video:", err);
+                        });
+                    } else {
+                        videoEl.pause();
+                    }
+                }
+            }
         }
-      } else {
-        if (!videoElement.paused) {
-
-          videoElement.pause();
-          videoElement.currentTime = 0; 
-        }
-      }
-    }
-  }
-
-  if (videoElement.paused) {
-    setTimeout(() => {
-      videoElement.play().catch(e => 
-        console.error(`Error al iniciar reproducción en ${marker.id}:`, e));
-    }, 100);
-  } 
+    });
 }
 
-document.addEventListener('DOMContentLoaded', () => {
 
-  const almMarker = document.getElementById('Alm-Marker');
-  const argMarker = document.getElementById('Arg-Marker');
-  const canMarker = document.getElementById('Can-Marker');
-  const japMarker = document.getElementById('Jap-Marker');
-  const mexMarker = document.getElementById('Mex-Marker');
+//function setARVisibility(marker, isVisible) { 
+  // Usa el marcador pasado como argumento para seleccionar SOLO su contenido
+//   const elements = marker.querySelectorAll('a-entity, a-plane, a-video, a-image'); 
+//   elements.forEach(el => {
+//     if (isVisible) {
 
-  const nftMarkers = [
-    almMarker, 
-    argMarker, 
-    canMarker, 
-    japMarker, 
-    mexMarker]
-  .filter(m => m);
+//       el.setAttribute('visible', true);
+//       el.emit('showContent'); 
+//     } else {
 
-  const filterBtn = document.getElementById('filter-btn');
-  const filterOverlay = document.getElementById('filter-overlay');
+//       el.emit('showContent', null, false); 
+//       // Dispara la animación en reversa
+//       setTimeout(() => {
+//           if (!marker.isMarkerVisible) {
+//               el.setAttribute('visible', false); 
+//           }
+//       }, 700);
+//     }
+//   });
 
-  // LÓGICA DE FILTROS
-  const filterClasses = [
-      '',                 // 0: Sin filtro
-      'filter-cold',      // 1: Tono frío
-      'filter-warm',      // 2: Tono cálido
-      //'filter-grayscale' // Si logras aplicarlo al body/main
-  ];
-  let currentFilterIndex = 0;
+//   const videoPlayer = marker.querySelector('a-video');
+//   if (videoPlayer) {
 
-  if (filterBtn && filterOverlay) {
-      filterBtn.addEventListener('click', () => {
+//     const videoElement = videoPlayer.getObject3D('mesh').material.map.image; 
+//     if (videoElement) {
+//       if (isVisible) {
+//         if (videoElement.paused) {
 
-        const currentFilterClass = filterClasses[currentFilterIndex];
-        // 1. Quitar la clase actual
-        if (currentFilterClass) { filterOverlay.classList.remove(currentFilterClass); }
-        // 2. Mover al siguiente índice (y volver a 0 al final)
-        currentFilterIndex = (currentFilterIndex + 1) % filterClasses.length;
-        // 3. Aplicar la nueva clase
-        const newFilterClass = filterClasses[currentFilterIndex];
-        if (newFilterClass) { filterOverlay.classList.add(newFilterClass); }
-        filterBtn.textContent = `🎨 Filtro: ${newFilterClass || 'Ninguno'}`;
-      });
-  } else {
+//           videoElement.play().catch(e => 
+//           console.error(`Error al iniciar reproducción en
+//           ${marker.id}:`, e));
+//         }
+//       } else {
+//         if (!videoElement.paused) {
 
-    console.warn("Falta el botón de filtro o la capa de superposición en el DOM.");
-  }
+//           videoElement.pause();
+//           videoElement.currentTime = 0; 
+//         }
+//       }
+//     }
+//   }
 
-  // INICIALIZACIÓN DE CADA MARCADOR
-  nftMarkers.forEach(marker => {
-    if (!marker) return;
-    marker.isMarkerVisible = false;
-    marker.addEventListener('markerFound', () => {
+//   if (videoElement.paused) {
+//     setTimeout(() => {
+//       videoElement.play().catch(e => 
+//         console.error(`Error al iniciar reproducción en ${marker.id}:`, e));
+//     }, 100);
+//   } 
+// }
 
-      console.log(`✅ Marcador ${marker.id} detectado.`);
-      marker.isMarkerVisible = true;
-      setARVisibility(marker, true); // Pasar el marcador actual
-    });
-    marker.addEventListener('markerLost', () => {
+// document.addEventListener('DOMContentLoaded', () => {
 
-      console.log(`❌ Marcador ${marker.id} perdido.`);
-      marker.isMarkerVisible = false; // Actualiza el estado
-      setARVisibility(marker, false); // Pasar el marcador actual
-    });
-  });
-});
+//   const almMarker = document.getElementById('Alm-Marker');
+//   const argMarker = document.getElementById('Arg-Marker');
+//   const canMarker = document.getElementById('Can-Marker');
+//   const japMarker = document.getElementById('Jap-Marker');
+//   const mexMarker = document.getElementById('Mex-Marker');
+
+//   const nftMarkers = [
+//     almMarker, 
+//     argMarker, 
+//     canMarker, 
+//     japMarker, 
+//     mexMarker]
+//   .filter(m => m);
+
+//   const filterBtn = document.getElementById('filter-btn');
+//   const filterOverlay = document.getElementById('filter-overlay');
+
+//   // LÓGICA DE FILTROS
+//   const filterClasses = [
+//       '',                 // 0: Sin filtro
+//       'filter-cold',      // 1: Tono frío
+//       'filter-warm',      // 2: Tono cálido
+//       //'filter-grayscale' // Si logras aplicarlo al body/main
+//   ];
+//   let currentFilterIndex = 0;
+
+//   if (filterBtn && filterOverlay) {
+//       filterBtn.addEventListener('click', () => {
+
+//         const currentFilterClass = filterClasses[currentFilterIndex];
+//         // 1. Quitar la clase actual
+//         if (currentFilterClass) { filterOverlay.classList.remove(currentFilterClass); }
+//         // 2. Mover al siguiente índice (y volver a 0 al final)
+//         currentFilterIndex = (currentFilterIndex + 1) % filterClasses.length;
+//         // 3. Aplicar la nueva clase
+//         const newFilterClass = filterClasses[currentFilterIndex];
+//         if (newFilterClass) { filterOverlay.classList.add(newFilterClass); }
+//         filterBtn.textContent = `🎨 Filtro: ${newFilterClass || 'Ninguno'}`;
+//       });
+//   } else {
+
+//     console.warn("Falta el botón de filtro o la capa de superposición en el DOM.");
+//   }
+
+//   // INICIALIZACIÓN DE CADA MARCADOR
+//   nftMarkers.forEach(marker => {
+//     if (!marker) return;
+//     marker.isMarkerVisible = false;
+//     marker.addEventListener('markerFound', () => {
+
+//       console.log(`✅ Marcador ${marker.id} detectado.`);
+//       marker.isMarkerVisible = true;
+//       setARVisibility(marker, true); // Pasar el marcador actual
+//     });
+//     marker.addEventListener('markerLost', () => {
+
+//       console.log(`❌ Marcador ${marker.id} perdido.`);
+//       marker.isMarkerVisible = false; // Actualiza el estado
+//       setARVisibility(marker, false); // Pasar el marcador actual
+//     });
+//   });
+// });
