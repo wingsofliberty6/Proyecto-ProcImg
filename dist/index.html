@@ -47,10 +47,12 @@
         smoothThreshold="5"
         id="Alm-Marker">
 
+        <a-box color="yellow" position="0 0 0.3" depth="0.3" height="0.3" width="0.3" visible="false"></a-box>
+
         <!-- MODELO -->
-        <a-entity id="alm-model"
+        <a-entity
           gltf-model="#model-glb"
-          position="0 0 0"
+          position="0 0 0.3"
           rotation="0 0 0"
           scale="1 1 1"
           visible="false"
@@ -62,6 +64,44 @@
             easing: linear;
           ">
         </a-entity>
+
+        <!-- TEXTO -->
+        <a-plane
+          position="0 0.5 0"
+          rotation="-90 0 0"
+          width="1"
+          height="0.5"
+          color="#2e7d32"
+          visible="false">
+
+          <a-text value="INFO TRIVIA"
+            align="center"
+            width="2"
+            position="0 0 0.05">
+          </a-text>
+
+        </a-plane>
+
+        <!-- VIDEO -->
+        <a-video
+          src="#video-alm"
+          width="1.2"
+          height="0.7"
+          position="0.9 0 0"
+          rotation="0 0 0"
+          visible="false">
+        </a-video>
+
+        <!-- IMAGEN -->
+        <a-image
+          src="#img-alm"
+          width="1.0"
+          height="1.2"
+          position="-0.9 0 0"
+          rotation="0 0 0"
+          visible="false">
+        </a-image>
+
       </a-nft>
 
       <!-- Set Argentina -->
