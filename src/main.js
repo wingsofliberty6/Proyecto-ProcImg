@@ -45,7 +45,7 @@ function setARVisibility(marker, isVisible) {
       videoElement.play().catch(e => 
         console.error(`Error al iniciar reproducción en ${marker.id}:`, e));
     }, 100);
-  }
+  } 
 }
 
 document.addEventListener('DOMContentLoaded', () => {
