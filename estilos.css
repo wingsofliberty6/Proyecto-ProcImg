@@ -118,25 +118,10 @@ main {
 
 /* La escena A-Frame dentro de #camera-feed */
 a-scene {
-  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
   height: 100vh;
+  z-index: 1;  /* No por encima de todo */
 }
-
-/* FORZAR A-FRAME AL FRENTE */
-a-scene, .a-canvas, canvas {
-  position: fixed !important;
-  top: 0 !important;
-  left: 0 !important;
-  width: 100vw !important;
-  height: 100vh !important;
-  z-index: 9999 !important;
-  pointer-events: none; /* la UI sigue funcionando */
-}
-
-/* Prevenir que layout ROMPA el canvas AR */
-body, html {
-  margin: 0;
-  padding: 0;
-  overflow: hidden !important;
-}
-
