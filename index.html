@@ -6,10 +6,10 @@
   <link rel="stylesheet" href="./public/estilos.css">
   <!-- Javascripts-->
   <script type="module" src="src/main.js"></script>
-  <!-- A-FRAME compatible con NFT (1.0.4 usa THREE r106) -->
-    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
-  <!-- AR.JS NFT compatible -->
-  <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>
+  <script type="module" src="src/interaccion.js"></script>
+  <!-- A-Frame + AR.js -->
+  <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/AR-js-org/AR.js@3.4.4/aframe/build/aframe-ar-nft.min.js"></script>
 </head>
 <body>
   <header>
@@ -23,125 +23,224 @@
       🎨 Filtros
     </button>
     <a-scene
-      vr-mode-ui="enabled: false"
       embedded
       renderer="logarithmicDepthBuffer: true;"
-      arjs="trackingMethod: best; sourceType: webcam; debugUIEnabled: false;"
+      vr-mode-ui="enabled: false;"
+      arjs="sourceType: webcam; debugUIEnabled: false; detectionMode: mono_and_matrix; patternRatio: 0.75;"
     >
+
+      <a-box color="yellow" position="0 0 0.3" depth="0.3" height="0.3" width="0.3" visible="true"></a-box>
+
       <!-- Assets -->
       <a-assets>
-        <video id="video-alm" src="./public/video-alm.mp4" preload="auto" loop="true" crossorigin="anonymous"></video>
-        <video id="video-arg" src="./public/video-arg.mp4" preload="auto" loop="true" crossorigin="anonymous"></video>
-
+        <video id="video-alm" src="./public/video-alm.mp4" controls preload="auto" loop="true" crossorigin="anonymous"></video>
+        <video id="video-arg" src="./public/video-arg.mp4" controls preload="auto" loop="true" crossorigin="anonymous"></video>
+        
         <a-asset-item id="model-glb" src="./public/model.glb" crossorigin="anonymous"></a-asset-item>
-
+        
         <img id="img-alm" src="./public/img-alm.jpg">
         <img id="img-arg" src="./public/img-arg.jpg">
       </a-assets>
 
-      <!-- NFT ALEMANIA -->
-      <a-nft
-        type="nft"
-        url="./public/nft/NFT-Alemania"
+      <!-- Set Alemania -->
+      <a-nft type="nft"
+        url="/Proyecto-ProcImg/public/nft/NFT-Alemania"
         smooth="true"
         smoothCount="10"
         smoothTolerance="0.01"
         smoothThreshold="5"
-        id="marker-alm"
-      >
-        <!-- Modelo -->
+        id="Alm-Marker">
+
+        <!-- MODELO -->
         <a-entity
           gltf-model="#model-glb"
-          id="model-alm"
-          visible="false"
-          scale="1 1 1"
           position="0 0 0.3"
-          animation="property: rotation; to: 0 360 0; loop: true; dur: 8000"
-        >
+          rotation="0 0 0"
+          scale="1 1 1"
+          visible="false"
+          animation_rotate="
+            property: rotation;
+            to: 0 360 0;
+            loop: true;
+            dur: 10000;
+            easing: linear;
+          ">
         </a-entity>
 
-        <!-- Texto -->
-        <a-plane visible="false" id="text-alm"
+        <!-- TEXTO -->
+        <a-plane
           position="0 0.5 0"
           rotation="-90 0 0"
-          width="1.2"
+          width="1"
           height="0.5"
           color="#2e7d32"
-        >
-          <a-text
-            value="Alemania – Trivia"
+          visible="false">
+
+          <a-text value="INFO TRIVIA"
             align="center"
-            width="3"
-            position="0 0 0.05"
-          ></a-text>
+            width="2"
+            position="0 0 0.05">
+          </a-text>
+
         </a-plane>
 
-        <!-- Video -->
+        <!-- VIDEO -->
         <a-video
-          id="video-entity-alm"
           src="#video-alm"
-          visible="false"
           width="1.2"
           height="0.7"
           position="0.9 0 0"
-        ></a-video>
-
-        <!-- Imagen -->
-        <a-image
-          visible="false"
-          id="img-alm-entity"
-          src="#img-alm"
-          width="1"
-          height="1.2"
-          position="-1 0 0"
-        ></a-image>
-      </a-nft>
-
-      <!-- NFT ARGENTINA -->
-      <a-nft
-        type="nft"
-        url="./public/nft/NFT-Argentina"
-        smooth="true"
-        smoothCount="10"
-        smoothTolerance="0.01"
-        smoothThreshold="5"
-        id="marker-arg"
-      >
-        <a-entity gltf-model="#model-glb" id="model-arg" visible="false"
-          position="0 0 0.3"
-          animation="property: rotation; to: 0 360 0; loop: true; dur: 8000">
-        </a-entity>
-
-        <a-plane visible="false" id="text-arg"
-          position="0 0.5 0"
-          rotation="-90 0 0"
-          width="1.2" 
-          height="0.5"
-          color="#1565c0">
-          <a-text value="Argentina – Trivia" align="center" width="3"
-            position="0 0 0.05">
-          </a-text>
-        </a-plane>
-
-        <a-video id="video-entity-arg"
-          src="#video-arg"
-          visible="false"
-          width="1.2"
-          height="0.7"
-          position="0.9 0 0">
+          rotation="0 0 0"
+          visible="false">
         </a-video>
 
-        <a-image id="img-arg-entity"
-          src="#img-arg"
-          visible="false"
-          width="1"
+        <!-- IMAGEN -->
+        <a-image
+          src="#img-alm"
+          width="1.0"
           height="1.2"
-          position="-1 0 0">
+          position="-0.9 0 0"
+          rotation="0 0 0"
+          visible="false">
         </a-image>
+
       </a-nft>
 
-      <a-entity camera></a-entity>
-    </a-scene>
+      <!-- Set Argentina -->
+      <a-nft type='nft'
+        url='/Proyecto-ProcImg/public/nft/NFT-Argentina' 
+        smooth="true"
+        smoothCount="10" 
+        id="Arg-Marker"> 
+          <a-entity 
+            
+            gltf-model="#model-glb" 
+            position='1.8 0.05 1.6' 
+            rotation='0 0 0' 
+            scale='1.2 1.2 1.2'
+            visible="false"
+            
+            animation="
+              property: rotation;          
+              to: 0 0 360;                 
+              loop: true;                  
+              dur: 10000;                  
+              easing: linear;              
+            "
+
+            animation__scale="
+              property: scale;
+              from: 0 0 0;
+              to: 1.2 1.2 1.2;
+              dur: 700;
+              easing: easeOutQuad;
+              startEvents: showContent;
+              dir: alternate;
+            "
+
+            animation__position="
+              property: position;
+              from: 0 0 0;
+              to: 1.8 0.05 1.6;
+              dur: 700;                       
+              easing: easeOutQuad;            
+              startEvents: showContent;
+            ">
+          </a-entity>
+          <a-plane 
+            
+            position='-1.8 -0.1 1.6' 
+            rotation='-90 0 0' 
+            width='1.6' 
+            height='0.9' 
+            color="#2e7d32"
+            visible="false"
+          
+            animation__scale="
+              property: scale;
+              from: 0 0 0;
+              to: 1.2 1.2 1.2;
+              dur: 1000;
+              easing: easeOutQuad;
+              startEvents: showContent;
+              dir: alternate;
+            "
+
+            animation__position="
+              property: position;
+              from: 0 0 0;
+              to: -1.8 -0.1 1.6;
+              dur: 1000;                       
+              easing: easeOutQuad;            
+              startEvents: showContent;
+            ">
+            <a-text value="INFO TRIVIA" align="center" width="3.5" position="0 0 0.005"></a-text>
+          </a-plane>
+          <a-video 
+            
+            src="#video-arg" 
+            width="2.0" 
+            height="1.2" 
+            position="2.2 0.2 -1.2" 
+            rotation="-90 0 0" 
+            visible="false"
+            
+            animation__scale="
+              property: scale;
+              from: 0 0 0;
+              to: 1.2 1.2 1.2;
+              dur: 1000;
+              easing: easeOutQuad;
+              startEvents: showContent;
+              dir: alternate;
+            "
+
+            animation__position="
+              property: position;
+              from: 0 0 0;
+              to: 2.2 0.2 -1.2;
+              dur: 1000;                       
+              easing: easeOutQuad;            
+              startEvents: showContent;
+            ">
+          </a-video>
+          <a-image 
+            
+            src="#img-arg" 
+            width="1.2" 
+            height="2.0" 
+            position="-1.8 0.2 -1.2" 
+            rotation="-90 0 0" 
+            visible="false"
+            
+            animation__scale="
+              property: scale;
+              from: 0 0 0;
+              to: 1.0 1.0 1.0;
+              dur: 700;
+              easing: easeOutQuad;
+              startEvents: showContent;
+              dir: alternate;
+            "
+
+            animation__position="
+              property: position;
+              from: 0 0 0;
+              to: -1.8 0.2 -1.2;
+              dur: 700;                       
+              easing: easeOutQuad;            
+              startEvents: showContent;
+            ">
+          </a-image>
+      </a-nft>
+
+      <!-- Set Canada -->
+
+      <!-- Set Japon -->
+
+      <!-- Set México -->
+      
+    </a-scene> 
   </main>
   <footer>
 
