@@ -27,6 +27,9 @@
       vr-mode-ui="enabled: false;"
       arjs="sourceType: webcam; debugUIEnabled: false; detectionMode: mono_and_matrix; patternRatio: 0.75;"
     >
+
+      <a-box color="yellow" position="0 0 0.3" depth="0.3" height="0.3" width="0.3" visible="true"></a-box>
+
       <!-- Assets -->
       <a-assets>
         <video id="video-alm" src="/Proyecto-ProcImg/assets/video-alm-0bU2Zfyz.mp4" controls preload="auto" loop="true" crossorigin="anonymous"></video>
@@ -46,8 +49,6 @@
         smoothTolerance="0.01"
         smoothThreshold="5"
         id="Alm-Marker">
-
-        <a-box color="yellow" position="0 0 0.3" depth="0.3" height="0.3" width="0.3" visible="false"></a-box>
 
         <!-- MODELO -->
         <a-entity
