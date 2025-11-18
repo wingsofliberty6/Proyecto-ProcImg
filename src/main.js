@@ -26,6 +26,10 @@ markers.forEach(marker => {
 
 function setVisibility(marker, isVisible) {
 
+    // INFORME DE ESTADO EN CONSOLA (MODIFICADO)
+    const status = isVisible ? "✅ MOSTRANDO elementos del NFT" : "❌ OCULTANDO elementos del NFT";
+    console.log(`${status}: ${marker.id}`);
+
     // Obtiene *todos* los elementos del marcador
     const children = marker.querySelectorAll("*");
 
